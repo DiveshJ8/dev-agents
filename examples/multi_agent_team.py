@@ -21,10 +21,10 @@ def main():
     # 2. Instantiate team of subagents
     subagents = create_default_agent_team(llm=mock_llm)
     
-    # 3. Instantiate Orchestrator (Lead Architect)
+    # 3. Instantiate Orchestrator (Megatron)
     workspace = "./workspace_demo"
     orchestrator = Orchestrator(
-        name="LeadArchitect",
+        name="Megatron",
         subagents=subagents,
         tools=DEFAULT_DEV_TOOLS,
         llm=mock_llm,

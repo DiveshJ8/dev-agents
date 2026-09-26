@@ -40,7 +40,7 @@ def test_agent_tool_registration_and_execution():
 
 def test_agent_run_loop():
     agent = BaseAgent(
-        name="SeniorDeveloper",
+        name="Shockwave",
         role="Developer",
         system_prompt="Developer instructions",
         llm=MockLLMProvider(),

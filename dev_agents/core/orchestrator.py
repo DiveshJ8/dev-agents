@@ -17,7 +17,7 @@ class Orchestrator(BaseAgent):
 
     def __init__(
         self,
-        name: str = "LeadArchitect",
+        name: str = "Megatron",
         role: str = "Engineering Supervisor",
         system_prompt: Optional[str] = None,
         subagents: Optional[List[BaseAgent]] = None,
@@ -26,8 +26,8 @@ class Orchestrator(BaseAgent):
         workspace_root: str = "./workspace",
     ):
         prompt = system_prompt or (
-            "You are the Lead Engineering Supervisor. You receive high-level software development tasks.\n"
-            "You can delegate sub-tasks to your specialized sub-agents: Architect, Coder, Reviewer, Tester, Researcher.\n"
+            "You are Megatron, the Lead Engineering Supervisor. You receive high-level software development tasks.\n"
+            "You can delegate sub-tasks to your specialized sub-agents: Starscream (Architect), Shockwave (Coder), Reflector (Reviewer), Brawl (Tester), Soundwave (Researcher), and Astrotrain (Colab).\n"
             "Review outputs from your sub-agents, combine their contributions, and produce a cohesive final deliverable."
         )
         super().__init__(
@@ -51,24 +51,60 @@ class Orchestrator(BaseAgent):
 
     def get_subagent(self, name: str) -> Optional[BaseAgent]:
         key = name.lower().strip()
+        if key in self.subagents:
+            return self.subagents[key]
+
         aliases = {
-            "architect": "systemarchitect",
-            "coder": "seniordeveloper",
-            "developer": "seniordeveloper",
-            "dev": "seniordeveloper",
-            "reviewer": "codereviewer",
-            "qa": "codereviewer",
-            "tester": "testengineer",
-            "test": "testengineer",
-            "researcher": "techresearcher",
-            "research": "techresearcher",
-            "docs": "techresearcher",
-            "colab": "colabengineer",
-            "colabagent": "colabengineer",
-            "cloudgpu": "colabengineer",
+            # Starscream / SystemArchitect
+            "architect": "starscream",
+            "arch": "starscream",
+            "systemarchitect": "starscream",
+            "starscream": "starscream",
+            # Shockwave / SeniorDeveloper / Coder
+            "coder": "shockwave",
+            "developer": "shockwave",
+            "dev": "shockwave",
+            "seniordeveloper": "shockwave",
+            "shockwave": "shockwave",
+            # Reflector / CodeReviewer
+            "reviewer": "reflector",
+            "review": "reflector",
+            "qa": "reflector",
+            "codereviewer": "reflector",
+            "reflector": "reflector",
+            # Brawl / TestEngineer
+            "tester": "brawl",
+            "test": "brawl",
+            "testengineer": "brawl",
+            "brawl": "brawl",
+            # Soundwave / TechResearcher
+            "researcher": "soundwave",
+            "research": "soundwave",
+            "docs": "soundwave",
+            "techresearcher": "soundwave",
+            "soundwave": "soundwave",
+            # Astrotrain / ColabEngineer
+            "colab": "astrotrain",
+            "colabengineer": "astrotrain",
+            "colabagent": "astrotrain",
+            "cloudgpu": "astrotrain",
+            "astrotrain": "astrotrain",
         }
         resolved = aliases.get(key, key)
-        return self.subagents.get(resolved)
+        if resolved in self.subagents:
+            return self.subagents[resolved]
+
+        # Reverse fallback if an agent was registered with legacy names
+        legacy_reverse = {
+            "starscream": "systemarchitect",
+            "shockwave": "seniordeveloper",
+            "reflector": "codereviewer",
+            "brawl": "testengineer",
+            "soundwave": "techresearcher",
+            "astrotrain": "colabengineer",
+        }
+        fallback_key = legacy_reverse.get(resolved, resolved)
+        return self.subagents.get(fallback_key)
 
     def _setup_orchestrator_tools(self) -> None:
         """Adds tools allowing the supervisor to delegate work to sub-agents."""
@@ -104,8 +140,9 @@ class Orchestrator(BaseAgent):
                 on_step_update(stage, msg)
 
         # Step 1: Architectural Analysis
-        notify("1. System Design", "SystemArchitect is designing the module architecture...")
-        arch_agent = self.get_subagent("systemarchitect") or self.get_subagent("architect")
+        arch_agent = self.get_subagent("starscream") or self.get_subagent("architect") or self.get_subagent("systemarchitect")
+        arch_name = arch_agent.name if arch_agent else "Starscream"
+        notify("1. System Design", f"{arch_name} is designing the module architecture...")
         arch_output = ""
         if arch_agent:
             arch_output = arch_agent.run(f"Design system architecture and file breakdown for: {goal}")
@@ -117,8 +154,9 @@ class Orchestrator(BaseAgent):
             )
 
         # Step 2: Implementation / Code Generation
-        notify("2. Implementation", "SeniorDeveloper is coding the components...")
-        coder_agent = self.get_subagent("seniordeveloper") or self.get_subagent("coder")
+        coder_agent = self.get_subagent("shockwave") or self.get_subagent("coder") or self.get_subagent("seniordeveloper")
+        coder_name = coder_agent.name if coder_agent else "Shockwave"
+        notify("2. Implementation", f"{coder_name} is coding the components...")
         coder_output = ""
         if coder_agent:
             coder_prompt = f"Implement the code based on the architecture:\n{arch_output or goal}"
@@ -131,8 +169,9 @@ class Orchestrator(BaseAgent):
             )
 
         # Step 3: Code Review & Security Audit
-        notify("3. Code Review", "CodeReviewer is reviewing quality and security...")
-        reviewer_agent = self.get_subagent("codereviewer") or self.get_subagent("reviewer")
+        reviewer_agent = self.get_subagent("reflector") or self.get_subagent("reviewer") or self.get_subagent("codereviewer")
+        reviewer_name = reviewer_agent.name if reviewer_agent else "Reflector"
+        notify("3. Code Review", f"{reviewer_name} is reviewing quality and security...")
         review_output = ""
         if reviewer_agent:
             review_prompt = f"Audit this implementation for security, style, and correctness:\n{coder_output}"
@@ -145,8 +184,9 @@ class Orchestrator(BaseAgent):
             )
 
         # Step 4: Test Suite Generation & Verification
-        notify("4. Test Automation", "TestEngineer is generating test suite...")
-        tester_agent = self.get_subagent("testengineer") or self.get_subagent("tester")
+        tester_agent = self.get_subagent("brawl") or self.get_subagent("tester") or self.get_subagent("testengineer")
+        tester_name = tester_agent.name if tester_agent else "Brawl"
+        notify("4. Test Automation", f"{tester_name} is generating test suite...")
         test_output = ""
         if tester_agent:
             test_prompt = f"Write unit tests and verification steps for:\n{coder_output}"
@@ -159,7 +199,7 @@ class Orchestrator(BaseAgent):
             )
 
         # Step 5: Final Synthesis by Orchestrator
-        notify("5. Synthesis", "LeadArchitect is finalizing project package...")
+        notify("5. Synthesis", f"{self.name} is finalizing project package...")
         final_summary = (
             f"# Project Deliverable: {goal}\n\n"
             f"## 1. Architecture Overview\n{arch_output}\n\n"

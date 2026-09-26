@@ -12,12 +12,12 @@ class TesterAgent(BaseAgent):
 
     def __init__(
         self,
-        name: str = "TestEngineer",
+        name: str = "Brawl",
         tools: Optional[List[BaseTool]] = None,
         **kwargs,
     ):
         system_prompt = (
-            "You are the Test Automation Engineer. Your responsibilities are:\n"
+            "You are Brawl, the Test Automation Engineer. Your responsibilities are:\n"
             "1. Generate thorough unit and integration test suites using pytest or equivalent frameworks.\n"
             "2. Cover boundary conditions, edge cases, error triggers, and valid workflows.\n"
             "3. Execute test runners via shell tools and inspect test failure traces.\n"

@@ -22,7 +22,7 @@ def build_system() -> Orchestrator:
     llm = get_llm_provider()
     subagents = create_default_agent_team(llm=llm)
     orchestrator = Orchestrator(
-        name="LeadArchitect",
+        name="Megatron",
         subagents=subagents,
         tools=DEFAULT_DEV_TOOLS,
         llm=llm,
@@ -58,10 +58,10 @@ def cmd_run(args: argparse.Namespace) -> None:
     orchestrator = build_system()
     agent_name = args.agent.lower()
     
-    target_agent = orchestrator if agent_name in ("leadarchitect", "orchestrator", "supervisor") else orchestrator.get_subagent(agent_name)
+    target_agent = orchestrator if agent_name in ("megatron", "leadarchitect", "orchestrator", "supervisor") else orchestrator.get_subagent(agent_name)
     if not target_agent:
         console.print(f"[bold red]Error:[/bold red] Subagent '{args.agent}' not found.")
-        console.print(f"Available agents: leadarchitect, {', '.join(orchestrator.subagents.keys())}")
+        console.print(f"Available agents: megatron, {', '.join(orchestrator.subagents.keys())}")
         sys.exit(1)
 
     console.print(Panel(f"[bold cyan]Agent:[/bold cyan] {target_agent.name} ({target_agent.role})\n[bold cyan]Task:[/bold cyan] {args.prompt}", title="Task Dispatch"))
@@ -111,7 +111,7 @@ def cli_entrypoint() -> None:
 
     # Run single agent command
     p_run = subparsers.add_parser("run", help="Run a specific sub-agent on a prompt")
-    p_run.add_argument("agent", help="Name of subagent (architect, coder, reviewer, tester, researcher)")
+    p_run.add_argument("agent", help="Name of subagent (starscream, shockwave, reflector, brawl, soundwave, astrotrain, or aliases)")
     p_run.add_argument("prompt", help="Task description or prompt")
 
     # Full pipeline command

@@ -25,7 +25,7 @@ class MockLLMProvider(BaseLLMProvider):
         system = system_instruction or ""
 
         # Check if caller is requesting a specific subagent role
-        if "Architect" in system or "SystemArchitect" in system:
+        if any(name in system for name in ("Starscream", "Architect", "SystemArchitect")):
             return LLMResponse(
                 content=(
                     "### Architecture Blueprint\n"
@@ -37,7 +37,7 @@ class MockLLMProvider(BaseLLMProvider):
                 model=self.model_name,
             )
 
-        elif "SeniorDeveloper" in system or "Coder" in system:
+        elif any(name in system for name in ("Shockwave", "SeniorDeveloper", "Coder")):
             return LLMResponse(
                 content=(
                     "### Implementation Completed\n"
@@ -51,7 +51,7 @@ class MockLLMProvider(BaseLLMProvider):
                 model=self.model_name,
             )
 
-        elif "CodeReviewer" in system or "Reviewer" in system:
+        elif any(name in system for name in ("Reflector", "CodeReviewer", "Reviewer")):
             return LLMResponse(
                 content=(
                     "### QA & Code Review Findings\n"
@@ -63,7 +63,7 @@ class MockLLMProvider(BaseLLMProvider):
                 model=self.model_name,
             )
 
-        elif "TestEngineer" in system or "Tester" in system:
+        elif any(name in system for name in ("Brawl", "TestEngineer", "Tester")):
             return LLMResponse(
                 content=(
                     "### Test Verification Report\n"
@@ -76,7 +76,7 @@ class MockLLMProvider(BaseLLMProvider):
                 model=self.model_name,
             )
 
-        elif "TechResearcher" in system or "Researcher" in system:
+        elif any(name in system for name in ("Soundwave", "TechResearcher", "Researcher")):
             return LLMResponse(
                 content=(
                     "### Technical Research Summary\n"
@@ -87,7 +87,7 @@ class MockLLMProvider(BaseLLMProvider):
                 model=self.model_name,
             )
 
-        elif "ColabEngineer" in system or "Colab" in system:
+        elif any(name in system for name in ("Astrotrain", "ColabEngineer", "Colab")):
             return LLMResponse(
                 content=(
                     "### Google Colab Cloud Deployment Ready\n"

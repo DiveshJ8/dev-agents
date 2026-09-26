@@ -12,12 +12,12 @@ class ReviewerAgent(BaseAgent):
 
     def __init__(
         self,
-        name: str = "CodeReviewer",
+        name: str = "Reflector",
         tools: Optional[List[BaseTool]] = None,
         **kwargs,
     ):
         system_prompt = (
-            "You are the Code Reviewer and Security QA Lead. Your responsibilities are:\n"
+            "You are Reflector, the Code Reviewer and Security QA Lead. Your responsibilities are:\n"
             "1. Audit code for logical bugs, syntax errors, and performance anti-patterns.\n"
             "2. Identify security vulnerabilities (injection, insecure deserialization, credentials leakage).\n"
             "3. Enforce code readability, naming conventions, and PEP 8 / language best practices.\n"

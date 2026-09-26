@@ -28,12 +28,12 @@ def test_individual_subagents():
 
     mock_llm = MockLLMProvider()
     agents = [
-        ("SystemArchitect", ArchitectAgent(llm=mock_llm), "Design high-performance WebSocket proxy"),
-        ("SeniorDeveloper", CoderAgent(llm=mock_llm), "Implement WebSocket connection pool in Python"),
-        ("CodeReviewer", ReviewerAgent(llm=mock_llm), "Review connection pool for resource leaks and concurrency bugs"),
-        ("TestEngineer", TesterAgent(llm=mock_llm), "Write unit and stress tests for WebSocket pool"),
-        ("TechResearcher", ResearcherAgent(llm=mock_llm), "Research best practices for ASGI WebSocket connection scaling"),
-        ("ColabEngineer", ColabAgent(llm=mock_llm), "Package WebSocket monitoring dashboard for Google Colab GPU"),
+        ("Starscream", ArchitectAgent(llm=mock_llm), "Design high-performance WebSocket proxy"),
+        ("Shockwave", CoderAgent(llm=mock_llm), "Implement WebSocket connection pool in Python"),
+        ("Reflector", ReviewerAgent(llm=mock_llm), "Review connection pool for resource leaks and concurrency bugs"),
+        ("Brawl", TesterAgent(llm=mock_llm), "Write unit and stress tests for WebSocket pool"),
+        ("Soundwave", ResearcherAgent(llm=mock_llm), "Research best practices for ASGI WebSocket connection scaling"),
+        ("Astrotrain", ColabAgent(llm=mock_llm), "Package WebSocket monitoring dashboard for Google Colab GPU"),
     ]
 
     results = {}
@@ -70,7 +70,7 @@ def test_colab_packaging_and_linking(workspace_dir: Path):
     )
     print(f"  [+] Created test app at: {app_file}")
 
-    # 2. Package into Colab notebook using ColabEngineer
+    # 2. Package into Colab notebook using Astrotrain
     colab_agent = ColabAgent(llm=MockLLMProvider())
     out_notebook = workspace_dir / "test_app_colab.ipynb"
     
@@ -111,7 +111,7 @@ def test_full_pipeline_orchestration(workspace_dir: Path):
     pipeline_workspace = workspace_dir / "pipeline_run"
     
     orchestrator = Orchestrator(
-        name="LeadArchitect",
+        name="Megatron",
         subagents=team,
         tools=DEFAULT_DEV_TOOLS,
         llm=mock_llm,

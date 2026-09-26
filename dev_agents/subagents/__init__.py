@@ -8,15 +8,24 @@ from dev_agents.subagents.researcher import ResearcherAgent
 from dev_agents.subagents.colab_agent import ColabAgent
 
 
+# Decepticon Nomenclature Aliases
+StarscreamAgent = ArchitectAgent
+ShockwaveAgent = CoderAgent
+ReflectorAgent = ReviewerAgent
+BrawlAgent = TesterAgent
+SoundwaveAgent = ResearcherAgent
+AstrotrainAgent = ColabAgent
+
+
 def create_default_agent_team(llm=None):
     """Creates a full team of specialized development sub-agents."""
     return [
-        ArchitectAgent(llm=llm),
-        CoderAgent(llm=llm),
-        ReviewerAgent(llm=llm),
-        TesterAgent(llm=llm),
-        ResearcherAgent(llm=llm),
-        ColabAgent(llm=llm),
+        StarscreamAgent(llm=llm),
+        ShockwaveAgent(llm=llm),
+        ReflectorAgent(llm=llm),
+        BrawlAgent(llm=llm),
+        SoundwaveAgent(llm=llm),
+        AstrotrainAgent(llm=llm),
     ]
 
 
@@ -27,5 +36,11 @@ __all__ = [
     "TesterAgent",
     "ResearcherAgent",
     "ColabAgent",
+    "StarscreamAgent",
+    "ShockwaveAgent",
+    "ReflectorAgent",
+    "BrawlAgent",
+    "SoundwaveAgent",
+    "AstrotrainAgent",
     "create_default_agent_team",
 ]
