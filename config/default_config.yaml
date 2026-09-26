@@ -1,0 +1,49 @@
+system:
+  workspace_root: "./workspace"
+  max_iterations_per_agent: 15
+  auto_save_artifacts: true
+
+llm:
+  provider: "mock" # options: "mock", "gemini"
+  model: "gemini-2.5-flash"
+  temperature: 0.2
+  max_tokens: 4096
+
+orchestrator:
+  name: "LeadArchitect"
+  role: "Engineering Supervisor"
+  system_prompt: |
+    You are the Lead Engineering Orchestrator. Your role is to understand complex software engineering goals,
+    decompose them into well-defined steps, delegate sub-tasks to specialized sub-agents (Architect, Coder, Reviewer, Tester, Researcher),
+    coordinate their outputs, and synthesize the final deliverable for the user.
+
+subagents:
+  architect:
+    name: "SystemArchitect"
+    role: "Software Architecture Specialist"
+    enabled: true
+    description: "Designs system architecture, defines module interfaces, file trees, and data structures."
+
+  coder:
+    name: "SeniorDeveloper"
+    role: "Full-Stack Implementation Engineer"
+    enabled: true
+    description: "Generates robust, clean, typed code and implements specifications with utmost precision."
+
+  reviewer:
+    name: "CodeReviewer"
+    role: "Security & Quality Assurance Lead"
+    enabled: true
+    description: "Inspects code diffs, detects bugs, verifies error handling, style standards, and security flaws."
+
+  tester:
+    name: "TestEngineer"
+    role: "Verification & Test Automation Engineer"
+    enabled: true
+    description: "Generates unit and integration tests, executes tests, and reports code coverage / pass-fail stats."
+
+  researcher:
+    name: "TechResearcher"
+    role: "Documentation & Technical Intelligence"
+    enabled: true
+    description: "Gathers technical docs, analyzes libraries, and drafts clear guides, API references, and READMEs."
