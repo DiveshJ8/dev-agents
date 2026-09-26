@@ -6,36 +6,36 @@ A modular, extensible multi-agent orchestration platform designed for autonomous
 
 ## 🎯 Project Overview
 
-**Dev-Agents** provides a robust, decoupled framework where a supervisor orchestrator (`LeadArchitect`) collaborates with specialized sub-agents to take high-level software requirements and turn them into validated, production-grade code and cloud-deployable applications.
+**Dev-Agents** provides a robust, decoupled framework where a supervisor orchestrator (`Megatron`) collaborates with specialized sub-agents to take high-level software requirements and turn them into validated, production-grade code and cloud-deployable applications.
 
 ### Architecture
 
 ```mermaid
 flowchart TD
-    User([Developer / User]) -->|Task / Goal| Orchestrator[LeadArchitect (Orchestrator)]
+    User(["Developer / User"]) -->|Task / Goal| Orchestrator["Megatron (Orchestrator)"]
     
     subgraph Multi-Agent Workspace
-        Orchestrator -->|1. Design Specs| Architect[SystemArchitect]
-        Architect -->|Architecture Specs| Coder[SeniorDeveloper]
-        Coder -->|Implementation Code| Reviewer[CodeReviewer]
-        Reviewer -->|QA & Audit| Tester[TestEngineer]
-        Tester -->|Verification & Tests| Researcher[TechResearcher]
-        Orchestrator -->|Cloud Execution & App Deploy| Colab[ColabEngineer]
+        Orchestrator -->|1. Design Specs| Architect["Starscream (Architect)"]
+        Architect -->|Architecture Specs| Coder["Shockwave (Coder)"]
+        Coder -->|Implementation Code| Reviewer["Reflector (Reviewer)"]
+        Reviewer -->|QA & Audit| Tester["Brawl (Tester)"]
+        Tester -->|Verification & Tests| Researcher["Soundwave (Researcher)"]
+        Orchestrator -->|Cloud Execution & App Deploy| Colab["Astrotrain (ColabEngineer)"]
     end
 
     subgraph Tooling Layer
-        Tools[(Developer Tools)]
-        Tools -.-> ReadFile[read_file]
-        Tools -.-> WriteFile[write_file]
-        Tools -.-> Shell[execute_command]
-        Tools -.-> Git[git_status / git_diff]
-        Tools -.-> ColabTools[Colab Tools & MCP]
+        Tools[("Developer Tools")]
+        Tools -.-> ReadFile["read_file"]
+        Tools -.-> WriteFile["write_file"]
+        Tools -.-> Shell["execute_command"]
+        Tools -.-> Git["git_status / git_diff"]
+        Tools -.-> ColabTools["Colab Tools & MCP"]
     end
 
     subgraph Colab Cloud Execution
         ColabTools -->|1-Click Launch| ColabWeb["Google Colab (GPU: T4 / A100 / TPU)"]
-        ColabTools -->|Localtunnel / Gradio / ngrok| PublicURL[Live Web App URL]
-        ColabTools -->|Cross-Origin Bridge| LocalRuntime[Local Jupyter Runtime Bridge]
+        ColabTools -->|Localtunnel / Gradio / ngrok| PublicURL["Live Web App URL"]
+        ColabTools -->|Cross-Origin Bridge| LocalRuntime["Local Jupyter Runtime Bridge"]
     end
 
     Architect -.-> Tools
@@ -44,7 +44,7 @@ flowchart TD
     Tester -.-> Tools
     Colab -.-> Tools
 
-    Orchestrator -->|Synthesized Deliverables| Artifacts[workspace/ Artifacts]
+    Orchestrator -->|Synthesized Deliverables| Artifacts["workspace/ Artifacts"]
 ```
 
 ---
@@ -99,17 +99,17 @@ D:\Work\dev-agents\
 
 ---
 
-## 👥 Specialized Sub-Agents
+## 👥 Specialized Sub-Agents (Decepticon Nomenclature)
 
-| Agent | Role | Capabilities | Default Tools |
-| :--- | :--- | :--- | :--- |
-| **`LeadArchitect`** | Engineering Supervisor | Decomposes goals, routes tasks, aggregates artifacts | `delegate_to_subagent`, full standard toolset |
-| **`ColabEngineer`** | Colab Cloud Execution | Packages apps, provisions GPU/TPU notebooks, sets up public tunnels | `package_app_for_colab`, `create_colab_notebook`, `generate_colab_link`, `open_colab_in_browser`, `get_colab_local_runtime_command` |
-| **`SystemArchitect`** | Architecture Specialist | Modular boundaries, file breakdown, API contracts | `read_file`, `list_directory`, `search_in_files` |
-| **`SeniorDeveloper`** | Implementation Engineer | Production code generation, bug fixing, refactoring | `read_file`, `write_file`, `list_directory`, `execute_command` |
-| **`CodeReviewer`** | QA & Security Auditor | Vulnerability scanning, code style, logic checking | `read_file`, `search_in_files`, `git_status`, `git_diff` |
-| **`TestEngineer`** | Verification Engineer | Unit & integration tests, test running, coverage | `read_file`, `write_file`, `list_directory`, `execute_command` |
-| **`TechResearcher`** | Technical Researcher | Library evaluation, documentation, API guides | `read_file`, `list_directory`, `search_in_files` |
+| Agent | Role | Capabilities | Default Tools | Aliases |
+| :--- | :--- | :--- | :--- | :--- |
+| **`Megatron`** | Engineering Supervisor | Decomposes goals, routes tasks, aggregates artifacts | `delegate_to_subagent`, full standard toolset | `orchestrator`, `leadarchitect`, `supervisor` |
+| **`Starscream`** | Architecture Specialist | Modular boundaries, file breakdown, API contracts | `read_file`, `list_directory`, `search_in_files` | `architect`, `systemarchitect` |
+| **`Shockwave`** | Implementation Engineer | Production code generation, bug fixing, refactoring | `read_file`, `write_file`, `list_directory`, `execute_command` | `coder`, `developer`, `seniordeveloper` |
+| **`Reflector`** | QA & Security Auditor | Vulnerability scanning, code style, logic checking | `read_file`, `search_in_files`, `git_status`, `git_diff` | `reviewer`, `qa`, `codereviewer` |
+| **`Brawl`** | Verification Engineer | Unit & integration tests, test running, coverage | `read_file`, `write_file`, `list_directory`, `execute_command` | `tester`, `test`, `testengineer` |
+| **`Soundwave`** | Technical Researcher | Library evaluation, documentation, API guides | `read_file`, `list_directory`, `search_in_files` | `researcher`, `docs`, `techresearcher` |
+| **`Astrotrain`** | Colab Cloud Execution | Packages apps, provisions GPU/TPU notebooks, sets up public tunnels | `package_app_for_colab`, `create_colab_notebook`, `generate_colab_link`, `open_colab_in_browser`, `get_colab_local_runtime_command` | `colab`, `colabengineer`, `cloudgpu` |
 
 ---
 
@@ -195,8 +195,8 @@ python -m dev_agents.cli.main list
 
 ### 4. Dispatch a Task to a Single Sub-Agent
 ```powershell
-python -m dev_agents.cli.main run architect "Design a high-throughput rate limiter"
-python -m dev_agents.cli.main run colab "Prepare a PyTorch fine-tuning notebook for Colab A100 GPU"
+python -m dev_agents.cli.main run starscream "Design a high-throughput rate limiter"
+python -m dev_agents.cli.main run astrotrain "Prepare a PyTorch fine-tuning notebook for Colab A100 GPU"
 ```
 
 ### 5. Run the Autonomous Multi-Agent Pipeline

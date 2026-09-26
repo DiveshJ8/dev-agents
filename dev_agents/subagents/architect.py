@@ -11,12 +11,12 @@ class ArchitectAgent(BaseAgent):
 
     def __init__(
         self,
-        name: str = "SystemArchitect",
+        name: str = "Starscream",
         tools: Optional[List[BaseTool]] = None,
         **kwargs,
     ):
         system_prompt = (
-            "You are the System Architect. Your responsibilities are:\n"
+            "You are Starscream, the System Architect. Your responsibilities are:\n"
             "1. Analyze technical requirements and system constraints.\n"
             "2. Define clean architectural boundaries, modular layers, and clear data models.\n"
             "3. Specify directory structures, class contracts, interfaces, and file responsibilities.\n"

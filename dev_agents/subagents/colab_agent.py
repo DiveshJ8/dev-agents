@@ -22,12 +22,12 @@ class ColabAgent(BaseAgent):
 
     def __init__(
         self,
-        name: str = "ColabEngineer",
+        name: str = "Astrotrain",
         tools: Optional[List[BaseTool]] = None,
         **kwargs,
     ):
         system_prompt = (
-            "You are the Google Colab & Cloud Execution Specialist. Your responsibilities are:\n"
+            "You are Astrotrain, the Google Colab & Cloud Execution Specialist. Your responsibilities are:\n"
             "1. Connect and interface with Google Colab (https://colab.research.google.com/).\n"
             "2. Convert Python applications (Streamlit, Gradio, FastAPI, PyTorch training scripts) into self-contained Colab executable notebooks.\n"
             "3. Configure GPU (T4, A100) or TPU hardware accelerators and environment dependencies for cloud training/inference.\n"

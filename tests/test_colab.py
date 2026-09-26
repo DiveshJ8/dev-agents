@@ -75,7 +75,7 @@ def test_get_colab_local_runtime_command():
 
 def test_colab_agent():
     agent = ColabAgent(llm=MockLLMProvider())
-    assert agent.name == "ColabEngineer"
+    assert agent.name == "Astrotrain"
     assert "generate_colab_link" in agent.tools
     assert "package_app_for_colab" in agent.tools
 

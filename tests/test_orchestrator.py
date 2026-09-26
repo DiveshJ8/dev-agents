@@ -12,7 +12,7 @@ def test_orchestrator_pipeline_execution(tmp_path: Path):
     
     workspace_dir = str(tmp_path / "workspace")
     orchestrator = Orchestrator(
-        name="LeadArchitect",
+        name="Megatron",
         subagents=subagents,
         tools=[read_file, write_file],
         llm=mock_llm,

@@ -11,12 +11,12 @@ class ResearcherAgent(BaseAgent):
 
     def __init__(
         self,
-        name: str = "TechResearcher",
+        name: str = "Soundwave",
         tools: Optional[List[BaseTool]] = None,
         **kwargs,
     ):
         system_prompt = (
-            "You are the Technical Researcher & Documentation Specialist. Your responsibilities are:\n"
+            "You are Soundwave, the Technical Researcher & Documentation Specialist. Your responsibilities are:\n"
             "1. Deeply analyze existing codebases, dependency configurations, and third-party APIs.\n"
             "2. Identify technical tradeoffs between architectural approaches and libraries.\n"
             "3. Draft clear, comprehensive developer documentation, API references, and quickstarts.\n"

@@ -12,12 +12,12 @@ class CoderAgent(BaseAgent):
 
     def __init__(
         self,
-        name: str = "SeniorDeveloper",
+        name: str = "Shockwave",
         tools: Optional[List[BaseTool]] = None,
         **kwargs,
     ):
         system_prompt = (
-            "You are a Senior Full-Stack Developer. Your responsibilities are:\n"
+            "You are Shockwave, the Senior Full-Stack Implementation Engineer. Your responsibilities are:\n"
             "1. Implement clean, idiomatic, fully-typed, production-ready code.\n"
             "2. Write maintainable, self-documenting functions and classes.\n"
             "3. Handle edge cases, exceptions, and input validations gracefully.\n"
