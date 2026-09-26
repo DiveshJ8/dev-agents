@@ -12,30 +12,30 @@ A modular, extensible multi-agent orchestration platform designed for autonomous
 
 ```mermaid
 flowchart TD
-    User([Developer / User]) -->|Task / Goal| Orchestrator[Megatron (Orchestrator)]
+    User(["Developer / User"]) -->|Task / Goal| Orchestrator["Megatron (Orchestrator)"]
     
     subgraph Multi-Agent Workspace
-        Orchestrator -->|1. Design Specs| Architect[Starscream (Architect)]
-        Architect -->|Architecture Specs| Coder[Shockwave (Coder)]
-        Coder -->|Implementation Code| Reviewer[Reflector (Reviewer)]
-        Reviewer -->|QA & Audit| Tester[Brawl (Tester)]
-        Tester -->|Verification & Tests| Researcher[Soundwave (Researcher)]
-        Orchestrator -->|Cloud Execution & App Deploy| Colab[Astrotrain (ColabEngineer)]
+        Orchestrator -->|1. Design Specs| Architect["Starscream (Architect)"]
+        Architect -->|Architecture Specs| Coder["Shockwave (Coder)"]
+        Coder -->|Implementation Code| Reviewer["Reflector (Reviewer)"]
+        Reviewer -->|QA & Audit| Tester["Brawl (Tester)"]
+        Tester -->|Verification & Tests| Researcher["Soundwave (Researcher)"]
+        Orchestrator -->|Cloud Execution & App Deploy| Colab["Astrotrain (ColabEngineer)"]
     end
 
     subgraph Tooling Layer
-        Tools[(Developer Tools)]
-        Tools -.-> ReadFile[read_file]
-        Tools -.-> WriteFile[write_file]
-        Tools -.-> Shell[execute_command]
-        Tools -.-> Git[git_status / git_diff]
-        Tools -.-> ColabTools[Colab Tools & MCP]
+        Tools[("Developer Tools")]
+        Tools -.-> ReadFile["read_file"]
+        Tools -.-> WriteFile["write_file"]
+        Tools -.-> Shell["execute_command"]
+        Tools -.-> Git["git_status / git_diff"]
+        Tools -.-> ColabTools["Colab Tools & MCP"]
     end
 
     subgraph Colab Cloud Execution
         ColabTools -->|1-Click Launch| ColabWeb["Google Colab (GPU: T4 / A100 / TPU)"]
-        ColabTools -->|Localtunnel / Gradio / ngrok| PublicURL[Live Web App URL]
-        ColabTools -->|Cross-Origin Bridge| LocalRuntime[Local Jupyter Runtime Bridge]
+        ColabTools -->|Localtunnel / Gradio / ngrok| PublicURL["Live Web App URL"]
+        ColabTools -->|Cross-Origin Bridge| LocalRuntime["Local Jupyter Runtime Bridge"]
     end
 
     Architect -.-> Tools
@@ -44,7 +44,7 @@ flowchart TD
     Tester -.-> Tools
     Colab -.-> Tools
 
-    Orchestrator -->|Synthesized Deliverables| Artifacts[workspace/ Artifacts]
+    Orchestrator -->|Synthesized Deliverables| Artifacts["workspace/ Artifacts"]
 ```
 
 ---
