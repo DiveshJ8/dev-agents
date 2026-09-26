@@ -47,3 +47,15 @@ subagents:
     role: "Documentation & Technical Intelligence"
     enabled: true
     description: "Gathers technical docs, analyzes libraries, and drafts clear guides, API references, and READMEs."
+
+  colab:
+    name: "ColabEngineer"
+    role: "Google Colab & Cloud Execution Specialist"
+    enabled: true
+    description: "Connects to Google Colab, packages apps into executable notebooks with GPU accelerators, sets up web tunnels, and generates 1-click execution links."
+
+mcp:
+  colab_server:
+    name: "colab-dev-agent"
+    transport: "stdio"
+    port: 8000

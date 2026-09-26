@@ -14,6 +14,8 @@ dependencies = [
     "python-dotenv>=1.0.0",
     "rich>=13.0.0",
     "google-genai>=2.0.0",
+    "mcp>=2.0.0",
+    "nbformat>=5.0.0",
 ]
 
 [project.optional-dependencies]
@@ -23,3 +25,4 @@ dev = [
 
 [project.scripts]
 dev-agents = "dev_agents.cli.main:cli_entrypoint"
+dev-agents-colab-mcp = "dev_agents.mcp.colab_server:run_colab_mcp_server"

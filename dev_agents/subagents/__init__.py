@@ -5,6 +5,7 @@ from dev_agents.subagents.coder import CoderAgent
 from dev_agents.subagents.reviewer import ReviewerAgent
 from dev_agents.subagents.tester import TesterAgent
 from dev_agents.subagents.researcher import ResearcherAgent
+from dev_agents.subagents.colab_agent import ColabAgent
 
 
 def create_default_agent_team(llm=None):
@@ -15,6 +16,7 @@ def create_default_agent_team(llm=None):
         ReviewerAgent(llm=llm),
         TesterAgent(llm=llm),
         ResearcherAgent(llm=llm),
+        ColabAgent(llm=llm),
     ]
 
 
@@ -24,5 +26,6 @@ __all__ = [
     "ReviewerAgent",
     "TesterAgent",
     "ResearcherAgent",
+    "ColabAgent",
     "create_default_agent_team",
 ]

@@ -87,6 +87,19 @@ class MockLLMProvider(BaseLLMProvider):
                 model=self.model_name,
             )
 
+        elif "ColabEngineer" in system or "Colab" in system:
+            return LLMResponse(
+                content=(
+                    "### Google Colab Cloud Deployment Ready\n"
+                    "- **Target Platform**: [Google Colab (GPU: T4)](https://colab.research.google.com/)\n"
+                    "- **Open-in-Colab Link**: https://colab.research.google.com/github/DiveshJ8/dev-agents/blob/main/notebooks/colab_app.ipynb\n"
+                    "- **Environment Provisioning**: Automatic GPU accelerator selection and dependency installation.\n"
+                    "- **Tunneling & Public URL**: Configured with live web tunnel for remote UI execution.\n"
+                    "Status: **Notebook generated and ready for 1-click execution in Colab.**"
+                ),
+                model=self.model_name,
+            )
+
         # Default fallback response
         return LLMResponse(
             content=f"Synthesized analysis for query: '{last_msg[:60]}...'. All tasks orchestrated successfully.",

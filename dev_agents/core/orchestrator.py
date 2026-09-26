@@ -63,6 +63,9 @@ class Orchestrator(BaseAgent):
             "researcher": "techresearcher",
             "research": "techresearcher",
             "docs": "techresearcher",
+            "colab": "colabengineer",
+            "colabagent": "colabengineer",
+            "cloudgpu": "colabengineer",
         }
         resolved = aliases.get(key, key)
         return self.subagents.get(resolved)
